@@ -1,12 +1,16 @@
 const express = require('express');
-const spritesData = require('./configs/sprites.js');
+const spritesData = require('./src/configs/sprites.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 app.get('/api/v1/world', async (req, res) => {
   try {
-    const data = require('./configs/world.json');
+    const data = require('./src/configs/world.json');
 
     res.json(data);
   } catch (error) {
@@ -26,7 +30,7 @@ app.get('/api/v1/sprites', async (req, res) => {
 
 app.get('/api/v1/gameObjects', async (req, res) => {
   try {
-    const data = require('./configs/gameObjects.json');
+    const data = require('./src/configs/gameObjects.json');
 
     res.json(data);
   } catch (error) {
@@ -38,3 +42,5 @@ app.get('/api/v1/gameObjects', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app;
